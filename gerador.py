@@ -6,7 +6,7 @@ from spade.message import Message
 import random
 
 class Gerador(Agent):
-    print("oi")
+    
     grau = random.randint(1, 3)
     x = random.randint(-1000,1000)
 
