@@ -3,7 +3,7 @@ from spade.agent import Agent
 from spade.behaviour import CyclicBehaviour
 from spade.template import Template
 from spade.message import Message
-import random
+
 
 class Gerador(Agent):
     
@@ -59,12 +59,20 @@ class Gerador(Agent):
 
         tf = self.funcao_grau()
         print(f"Funcao de {Gerador.grau}o grau: ", Gerador.x)
+        msg = Message()
+        msg.set_metadata("performativa","inform")
         if Gerador.grau == 1:
             print(f"Funcao: {Gerador.a}x + ({Gerador.b})")
+            msg.to = "ezio_resolvedor1@jix.im","senhamuitoforte"
+            msg.body = "Função de 1oGrau"
         elif Gerador.grau == 2:
             print(f"Funcao: {Gerador.a}x^2 + ({Gerador.b}x) + ({Gerador.c})")
+            msg.to = "ezioanon_resolvedor2@jix.im","senhamuitoforte"
+            msg.body = "Função de 2oGrau"
         else:
             print(f"Funcao: {Gerador.a}x^3 + ({Gerador.b}x^2) + ({Gerador.c}x) + ({Gerador.d})")
+            msg.to = "ezio_resolvedor3@jix.im","senhamuitoforte"
+            msg.body = "Função de 3oGrau"
 
         self.add_behaviour(tf, t)
 
