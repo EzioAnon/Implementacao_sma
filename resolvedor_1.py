@@ -10,7 +10,7 @@ class Resolvedor_1grau(Agent):
             x = []
             y = []
             i = 0
-            a= 3
+            
             while True:
                 x.append(random.randint(-1000, 1000))
                 msg = Message(to="ezioanon@jix.im")
