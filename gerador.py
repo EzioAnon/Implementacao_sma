@@ -41,6 +41,7 @@ class Gerador(Agent):
             msg.set_metadata("performative", "inform")
             msg.body = str(int(y))
             await self.send(msg)
+    
     class tipo_funcao(CyclicBehaviour):
         async def run(self):
             msg = await self.receive(timeout=5)
@@ -51,12 +52,13 @@ class Gerador(Agent):
                 resposta_msg.set_metadata("performative", "inform")
                 resposta_msg.body = resposta
                 await self.send(resposta_msg)
+    
     async def setup(self):
         t = Template()
         t.set_metadata("performative", "subscribe")
 
         tf = self.funcao_grau()
-        print(f"Funcao de {Gerador.grau}o grau: ")
+        print(f"Funcao de {Gerador.grau}o grau: ", Gerador.x)
         if Gerador.grau == 1:
             print(f"Funcao: {Gerador.a}x + ({Gerador.b})")
         elif Gerador.grau == 2:
