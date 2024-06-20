@@ -7,7 +7,7 @@ import random
 
 class Gerador(Agent):
     
-    grau = random.randint(1, 3)
+    grau = 1
     x = random.randint(-1000,1000)
 
 
@@ -63,15 +63,15 @@ class Gerador(Agent):
         msg.set_metadata("performativa","inform")
         if Gerador.grau == 1:
             print(f"Funcao: {Gerador.a}x + ({Gerador.b})")
-            msg.to = "ezio_resolvedor1@jix.im","senhamuitoforte"
+            msg.to = "ezio_resolvedor1@jix.im"
             msg.body = "Função de 1oGrau"
         elif Gerador.grau == 2:
             print(f"Funcao: {Gerador.a}x^2 + ({Gerador.b}x) + ({Gerador.c})")
-            msg.to = "ezioanon_resolvedor2@jix.im","senhamuitoforte"
+            msg.to = "ezioanon_resolvedor2@jix.im"
             msg.body = "Função de 2oGrau"
         else:
             print(f"Funcao: {Gerador.a}x^3 + ({Gerador.b}x^2) + ({Gerador.c}x) + ({Gerador.d})")
-            msg.to = "ezio_resolvedor3@jix.im","senhamuitoforte"
+            msg.to = "ezio_resolvedor3@jix.im"
             msg.body = "Função de 3oGrau"
 
         self.add_behaviour(tf, t)
