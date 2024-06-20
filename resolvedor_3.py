@@ -5,7 +5,7 @@ from spade.message import Message
 import random
 class Resolvedor_3grau(Agent):
     class resolver(CyclicBehaviour):
-        x = random.randint(-1000,1000)#testar um valor qualquer, com os resultados obtidos tentar direcionar
+        x = random.randint(-1000,1000)
         
 
 

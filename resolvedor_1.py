@@ -10,23 +10,24 @@ class Resolvedor_1grau(Agent):
             x = []
             y = []
             i = 0
-            
-            while True:
+            res = await self.receive(timeout=5)
+            if res:
                 x.append(random.randint(-1000, 1000))
                 msg = Message(to="ezioanon@jix.im")
                 msg.set_metadata("performative", "inform")
-
                 msg.body = str(x[i])
+                print(f"Gerou x : ",x)
+                
                 await self.send(msg)
 
-                res = await self.receive(timeout=5)
-                if res:
+                res_y = await self.receive(timeout=5)
+                if res_y:
                     y.append(int(res.body))
                     if y[i] == 0:
                         await self.agent.stop()
 
                     if i == 1:
-                        x_zero = x[0] - ((x[1] - x[0]) * y[0]) / (y[1] - y[0])
+                        x_zero = x[0] - ((x[1] - x[0]) * y[0]) / (y[1] - y[0]) # Interpolação Linear
                         msg = Message(to="ezioanon@jix.im")
                         msg.set_metadata("performative", "inform")
                         msg.body = str(x_zero)

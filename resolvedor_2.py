@@ -25,7 +25,7 @@ class Resolvedor_2grau(Agent):
                         await self.agent.stop()
 
                     if i == 1:
-                        x_zero = x[1] - (((x[1] - x[0]) ** 2 * (y[1]- y[2]) - (x[1] - x[2])** 2 * (y[1]- y[0]))/2*((x[1]- x[0])* (y[1]-y[2]) - (x[1] - x[2]* (y[1]- y[0])) ))
+                        x_zero = x[1] - (((x[1] - x[0]) ** 2 * (y[1]- y[2]) - (x[1] - x[2])** 2 * (y[1]- y[0]))/2*((x[1]- x[0])* (y[1]-y[2]) - (x[1] - x[2]* (y[1]- y[0])) ))# Interpolação quadratica
                         msg = Message(to="ezioanon@jix.im")
                         msg.set_metadata("performative", "inform")
                         msg.body = str(x_zero)
