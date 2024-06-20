@@ -5,8 +5,10 @@ from spade.message import Message
 import random
 class Resolvedor_1grau(Agent):
     class resolver(CyclicBehaviour):
-        x = random.randint(-1000,1000)#testar um valor qualquer, com os resultados obtidos tentar direcionar
-        
+        async def run(self):
+            msg = Message(to= "ezioanon@jix.im")
+            msg.set_metadata = ("performative","inform")
+            x_zero = x[0] - ((x[1] - x[0])*y[0])/(y[1]- y[0])
 
 
     

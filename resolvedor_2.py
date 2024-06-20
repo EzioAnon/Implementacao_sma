@@ -6,7 +6,7 @@ import random
 class Resolvedor_2grau(Agent):
     class resolver(CyclicBehaviour):
         x = random.randint(-1000,1000)#testar um valor qualquer, com os resultados obtidos tentar direcionar
-        
+        x_zero = x[1] - (((x[1]-x[0])**2 * (y[1]-y[2]) - (x[1]-x[2])**2 * (y[1] - y[0]))/(2 * ((x[1]-x[0]) * (y[1] - y[2]) - (x[1] - x[2]) * (y[1] - y[0]))))
 
 
     
