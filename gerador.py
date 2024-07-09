@@ -100,7 +100,7 @@ class Gerador(Agent):
         self.add_behaviour(self.GrauFuncao())
 
 async def main():
-    generator_agent = Gerador("ezioanon@jix.im", "senhaforte")
+    generator_agent = Gerador("agente@jix.im", "senhaAqui")
     await generator_agent.start()
     print("Gerador iniciado")
 

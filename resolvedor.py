@@ -183,7 +183,7 @@ class Resolvedor(Agent):
         self.add_behaviour(self.Grau())
 
 async def main():
-    resolver_agent = Resolvedor("ezio_resolvedor1@jix.im", "senhamuitoforte")
+    resolver_agent = Resolvedor("agente@jix.im", "senhaAqui")
     await resolver_agent.start()
     print("Resolvedor iniciado")
 
