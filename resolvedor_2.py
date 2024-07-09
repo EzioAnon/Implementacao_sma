@@ -5,6 +5,7 @@ import random
 import asyncio
 import numpy as np
 
+
 class Resolvedor(Agent):
     class Grau(OneShotBehaviour):
         async def run(self):
@@ -124,7 +125,7 @@ class Resolvedor(Agent):
             self.b = 0
             self.c = 0
             self.d = 0
-            self.raiz_x = 0
+            
 
         async def run(self):
             if self.i==4:
@@ -132,35 +133,50 @@ class Resolvedor(Agent):
                 y = np.array(self.y)
                 matriz = np.column_stack([x**3,x**2,x,np.ones_like(x)])
                 coeficientes = np.linalg.solve(matriz,y)
-                self.a,self.b,self.c,self.d = coeficientes
-                q = 2*self.b**3 - 9*self.a*self.b*self.c + 27*self.a**2 * self.d/27*self.a**3
-                p = 3*self.a*self.c -self.b/3*self.a
-                delta = (q/2)** 2 + (p/3)**3
-                raiz = np.cbrt(-q/2 + np.sqrt(delta)) + np.cbrt(-q/2 - np.sqrt(delta))
+                self.a,self.b,self.c,self.d = [round(coef) for coef in coeficientes]
                 
+                p = (3 * self.a * self.c - self.b**2) / (3 * self.a**2)
+                q = (2 * self.b**3 - 9 * self.a * self.b * self.c + 27 * self.a**2 * self.d) / (27 *self.a**3)
+                delta = (q / 2)**2 + (p / 3)**3
+                
+                if delta >= 0:
+                    
+                    raiz = np.cbrt(-q / 2 + np.sqrt(delta)) + np.cbrt(-q / 2 - np.sqrt(delta))
+                    
+                else:
+                    theta = np.arccos(-q / (2 * np.sqrt(-(p / 3)**3)))
+                    raiz = 2 * np.sqrt(-p / 3) * np.cos(theta / 3) - self.b / (3 * self.a)
+                    
                 self.x.append(raiz)
+                x_zero = round(self.x[self.i])
+
                 
-                x_zero = self.x[self.i]
-                print(f"a:{self.a}, b:{self.b}, c:{self.c},d:{self.d}, raiz_1: {x_zero}")
+                
+                print(f"a:{self.a}, b:{self.b}, c:{self.c},d:{self.d}, raiz econtrada: {raiz}, raiz enviada: {int(x_zero)}")
             else:
                 self.x.append(random.randint(-1000, 1000))
                 x_zero = self.x[self.i]
 
             print(f"Enviando valor {x_zero} para função de 3º grau")
 
-            msg = Message(to="ezioanon@jix.im", body=str(float(x_zero)), thread="unique-thread-id")
+            msg = Message(to="ezioanon@jix.im", body=str(int(x_zero)), thread="unique-thread-id")
             await self.send(msg)
 
             response = await self.receive(timeout=20)
             if response:
                 self.y.append(int(response.body))
-                print(f"Resultado da função de 3º grau para {self.x[self.i]}: {self.y[self.i]}")
+                print(f"Resultado da função de 3º grau para {x_zero}: {self.y[self.i]}")
                 if self.y[self.i] == 0:
                     print("Resultado zero encontrado!")
                     await self.agent.stop()
                     self.kill()
 
-                self.i += 1
+                if self.i <= 4:self.i += 1
+                else: #As vezes arredondamento fica errado, assim permite voltar dentro da operação
+                   print("Erro de Arredondamento")
+                   await self.agent.stop()
+                   self.kill()
+
 
     async def setup(self):
         print("Resolvedor iniciando . . .")

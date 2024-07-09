@@ -88,7 +88,7 @@ class Gerador(Agent):
         async def run(self):
             msg = await self.receive(timeout=20)
             if msg: 
-             x_resolvedor = float(msg.body)  
+             x_resolvedor = int(msg.body)  
              resultado = self.a * x_resolvedor**3 + self.b * x_resolvedor**2 + self.c * x_resolvedor + self.d
              res = Message(to=str(msg.sender), body=str(int(resultado)), thread=msg.thread)
              await self.send(res)
