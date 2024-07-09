@@ -8,8 +8,8 @@ import asyncio
 class Gerador(Agent):
     class GrauFuncao(OneShotBehaviour):
         async def run(self):
-            # grau = random.randint(1, 3) 
-            grau =3
+            grau = random.randint(1, 3) 
+           
             print(f"Grau da função gerado pelo Gerador: {grau}")
 
             x = random.randint(-1000, 1000)
@@ -26,13 +26,13 @@ class Gerador(Agent):
             if grau == 1:
                 a = random.randint(-100, 100)
                 b = -1 * (a * x)
-                print(f"Função 1gi grau: {a}x^2 + ({b}x) ")
+                print(f"Função 1 grau: {a}x^2 + ({b}x) ")
                 self.agent.add_behaviour(self.agent.Grau1(a, b, x))
             elif grau == 2:
                 a = random.randint(-100, 100)
                 b = random.randint(-100, 100)
                 c = -1 * (a * x**2 + b * x)
-                print(f"Função 2 grau: {a}x^2 {b}x {c}")
+                print(f"Função 2 grau: {a}x^2 + ({b}x() + ({c})")
                 self.agent.add_behaviour(self.agent.Grau2(a, b, c, x))
             elif grau == 3:
                 a = random.randint(-100, 100)
