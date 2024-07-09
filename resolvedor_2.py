@@ -134,7 +134,7 @@ class Resolvedor(Agent):
                 coeficientes = np.linalg.solve(matriz,y)
                 self.a,self.b,self.c,self.d = coeficientes
                 q = 2*self.b**3 - 9*self.a*self.b*self.c + 27*self.a**2 * self.d/27*self.a**3
-                p = 3*self.a*self.c -self.b/3*self.a**2
+                p = 3*self.a*self.c -self.b/3*self.a
                 delta = (q/2)** 2 + (p/3)**3
                 raiz = np.cbrt(-q/2 + np.sqrt(delta)) + np.cbrt(-q/2 - np.sqrt(delta))
                 

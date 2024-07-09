@@ -26,7 +26,7 @@ class Gerador(Agent):
             if grau == 1:
                 a = random.randint(-100, 100)
                 b = -1 * (a * x)
-                print(f"Função 1 grau: {a}x^2 + ({b}x) ")
+                print(f"Função 1gi grau: {a}x^2 + ({b}x) ")
                 self.agent.add_behaviour(self.agent.Grau1(a, b, x))
             elif grau == 2:
                 a = random.randint(-100, 100)
