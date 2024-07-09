@@ -36,7 +36,7 @@ class Resolvedor(Agent):
 
         async def run(self):
             if self.i > 1:
-                self.x.append(self.x[0] - ((self.x[1] - self.x[0]) * self.y[0]) / (self.y[1] - self.y[0]))  # Lógica para primeiro grau
+                self.x.append(self.x[0] - ((self.x[1] - self.x[0]) * self.y[0]) / (self.y[1] - self.y[0]))  
                 x_zero = self.x[self.i]
             else:
                 self.x.append(random.randint(-1000, 1000))
